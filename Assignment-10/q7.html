@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Word and Character Counter</title>
+    <style>
+        .counter {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function updateCount() {
+            const textarea = document.getElementById('textInput');
+            const charCount = textarea.value.length;
+            const wordCount = textarea.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+
+            document.getElementById('charCount').innerText = `Character Count: ${charCount}`;
+            document.getElementById('wordCount').innerText = `Word Count: ${wordCount}`;
+
+            if (charCount > 100) {
+                alert('Character limit exceeded!');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Live Word and Character Counter</h1>
+    <textarea id="textInput" oninput="updateCount()" rows="10" cols="50"></textarea>
+    <div class="counter" id="charCount">Character Count: 0</div>
+    <div class="counter" id="wordCount">Word Count: 0</div>
+</body>
+</html>

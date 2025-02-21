@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country-State Selection</title>
+    <script>
+        const data = {
+            "USA": ["California", "Texas", "New York"],
+            "India": ["Maharashtra", "Karnataka", "Tamil Nadu"],
+            "UK": ["England", "Scotland", "Wales"]
+        };
+
+        function populateCountries() {
+            const countrySelect = document.getElementById('country');
+            for (const country in data) {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                countrySelect.appendChild(option);
+            }
+        }
+
+        function populateStates() {
+            const countrySelect = document.getElementById('country');
+            const stateSelect = document.getElementById('state');
+            const selectedCountry = countrySelect.value;
+
+            stateSelect.innerHTML = ''; // Clear previous options
+
+            if (selectedCountry) {
+                const states = data[selectedCountry];
+                states.forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    stateSelect.appendChild(option);
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            populateCountries();
+            document.getElementById('country').addEventListener('change', populateStates);
+        });
+    </script>
+</head>
+<body>
+    <h1>Country-State Selection</h1>
+    <label for="country">Country:</label>
+    <select id="country">
+        <option value="">Select a country</option>
+    </select>
+
+    <label for="state">State:</label>
+    <select id="state">
+        <option value="">Select a state</option>
+    </select>
+</body>
+</html>

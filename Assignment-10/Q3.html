@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #summary {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Pizza Order Form</h1>
+    <form id="pizza-form">
+        <label for="size">Select Pizza Size:</label>
+        <input type="radio" id="small" name="size" value="Small">
+        <label for="small">Small</label>
+        <input type="radio" id="medium" name="size" value="Medium">
+        <label for="medium">Medium</label>
+        <input type="radio" id="large" name="size" value="Large">
+        <label for="large">Large</label>
+
+        <label for="toppings">Select Toppings:</label>
+        <input type="checkbox" id="cheese" name="toppings" value="Cheese">
+        <label for="cheese">Cheese</label>
+        <input type="checkbox" id="pepperoni" name="toppings" value="Pepperoni">
+        <label for="pepperoni">Pepperoni</label>
+        <input type="checkbox" id="mushrooms" name="toppings" value="Mushrooms">
+        <label for="mushrooms">Mushrooms</label>
+        <input type="checkbox" id="olives" name="toppings" value="Olives">
+        <label for="olives">Olives</label>
+
+        <button type="submit">Submit Order</button>
+    </form>
+    <div id="summary"></div>
+
+    <script>
+        const form = document.getElementById('pizza-form');
+        const summaryDiv = document.getElementById('summary');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const size = document.querySelector('input[name="size"]:checked').value;
+            const toppings = Array.from(document.querySelectorAll('input[name="toppings"]:checked')).map((checkbox) => checkbox.value);
+
+            const summary = `You have ordered a ${size} pizza with the following toppings: ${toppings.join(', ')}`;
+            summaryDiv.innerText = summary;
+        });
+    </script>
+</body>
+</html>
